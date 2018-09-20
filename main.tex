@@ -1,0 +1,152 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[left=3.5cm, right=3.5cm,bottom=3cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\usepackage{parskip}
+\usepackage{mathabx}
+
+
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{setspace}
+
+\pagestyle{fancy}
+\fancyhf{} 
+
+\chead{Share\LaTeX}
+\lhead{Math 55 2.5-4.3}
+\rhead{Xuyang Yu September 2018}
+
+\cfoot{\thepage}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\sisetup{
+    round-mode         = places,
+    round-precision    = 2,
+}
+
+\begin{document}
+
+\setlength{\parskip}{7pt}
+
+\setcounter{section}{1}
+\section{Basic Structures: Sets, Functions, Sequences, Sums, and Matrices (3)}
+\setcounter{subsection}{4}
+\subsection{Cardinality of Sets}
+
+\begin{enumerate}
+    \setcounter{enumi}{3}
+    \item (c) countably infinite. We represent the real numbers consisting of all 1s with a number pair $(a,b)$, where $a$ is the number of 1s to the left of the decimal point, where $b$ is the number of 1s to the right. The sequence is $(1,0), (1,1), (2,0), (1,2), (2,1), (3,0), (1,3), (2,2), (3,1), (4,0)...$. In this diagonally organized fashion, it forms a surjection from integers to real numbers consisting of all 1s. It forms an injection because all the real numbers in the list are unique. As a result, such a set of real numbers has a bijection from integers. Namely, it is countable.
+    
+    (d)uncountable. Suppose it is countable, then all of them can be written in a list as $r_1 =  \dots   d_{13}d_{12}d_{11}.d_{21}d_{22}d_{23} \dots $, $r_2 = \dots d_{33}d_{32}d_{31}.d_{41}d_{42}d_{43} \dots$, $\dots$,\\ 
+    $r_i = \dots d_{(2i-1)3}d_{(2i-1)2}d_{(2i-1)1}.d_{(2i)1}d_{(2i)2}d_{(2i)3} \dots$, $\dots$.\\
+    where $d_{ab} \in {1,9}$. Then form a new real number with decimal expansion of only 1s and 9s $r = \dots d_3d_2d_1.d_1d_2d_3$ be a number such that 
+    \[d_i =  \begin{cases}
+        1 & \text{if } d_{(2i)i} = 9\\
+        9 & \text{if } d_{(2i)i} = 1
+    \end{cases}
+    \] which is not equal to any real number in the list, which contradicts our assumption. Therefore, the set is uncountable.
+    
+    \setcounter{enumi}{9}
+    \item  (a) $A$ is the set of all real numbers. $B$ is the set of all non-zero real numbers. $A-B = \{0\}$\\
+    (b) $A$ is the set of all real numbers. $B$ is the set of all irrational numbers. $A-B = \mathbb{Q}$\\
+    (c) $A$ is the set of all real numbers. $B$ is the set of all negative real numbers. $A-B = \mathbb{R^+}$
+    
+    \setcounter{enumi}{15}
+    \item We have a countable set $A$, and a subset of $A$ called $B$. There are two cases:\\
+    Case 1: if $A$ is finite, then the subset $B$ is also finite.\\
+    Case 2: if $A$ is countably infinite, then the elements in $A$ can be listed in an infinite sequence $a_1,a_2,a_3 \dots$ Since $B$ is a subset of $A$, in the list simply cross out the elements in $A$ that are not in $B$, then we obtain a list for all elements in $B$. That is, $B$ is also countable.
+    %if $B \subset$
+    
+    
+    \setcounter{enumi}{19}
+    \item Let $a_i$ be elements of $A$, $b_i$ be an element of $B$ and $c_i$ be an element of $C$. Since $|A| = |B|$ and $|B| = |C|$, $A$ and $B$, $B$ and $C$ have a bijection.
+    
+    Injection: There is an injective function $f: A \rightarrow B$ such that $f(a_1) = f(a_2)$ implies $a_1 = a_2$. There is an injective function $g: B \rightarrow C$ such that $g(b_1) = g(b_2)$ implies $b_1 = b_2$. Then we have function $g \circ f: A \rightarrow C$ such that if $(g \circ f)(a_1) = (g \circ f)(a_2)$, then $g(f(a_1)) = g(f(a_2))$, $f(a_1) = f(a_2)$, and lastly $a_1 = a_2$. Therefore, $A$ and $C$ have an injection.
+    
+    Surjection: There is an surjective function $f': A \rightarrow B$ such that for all $b$, there is some $a$ that $f'(a) = b$. There is an surjective function $g': B \rightarrow C$ such that for all $c$, there is some $b$ that $g'(b) = c$. Thus for all $c$, there is some $b = f'(a)$ that $g'(b) = g'(f'(a)) = c$. Therefore function $g \circ f: A \rightarrow C$ is surjective.
+    
+    Hence, $A$ and $C$ have an bijection and $|A| = |C|$.
+\end{enumerate}
+\setcounter{section}{3}
+\section{Number Theory and Cryptography}
+\subsection{Divisibility and Modular Arithmetic}
+\begin{enumerate}
+    \setcounter{enumi}{5}
+    \item if $a|c$ and $b|d$, then there are integers $k_1$ and $k_2$ such that $c = ak_1$, and $d = bk_2$. Then $cd = ak_1 \cdot bk_2 = ab(k_1k_2)$. Therefore, $ab|cd$.
+    
+    \setcounter{enumi}{7}
+    \item Counterexample: $4|60$, but $4 \notdivides 6$ and $4 \notdivides 10$.
+    
+    \setcounter{enumi}{9}
+    \item (e) $-2002 = -23 \cdot 87 + 1$
+    
+    \setcounter{enumi}{13}
+    \item (f) $a^3+4b^3 \equiv 11^3+4\times3^3 \equiv 1331+108 \equiv 1439 \equiv 14 \pmod{19}$
+    
+    \setcounter{enumi}{35}
+    \item Since $a \equiv b \pmod{m}$, $m | (a-b)$, that is, there is an integer $k$ such that $a-b = mk$. Multiplying both side by positive integer $c$, we have $(a-b)c = mkc$, $ac - bc = (mc)k$. Since $m \geq 2$ and $c > 0$, we have $mc > 0$. Therefore, $(mc) | (ac-bc)$ and then $ac \equiv bc \pmod{mc}$
+    
+    \setcounter{enumi}{39}
+    \item if $n$ is an odd positive integer, there is an integer $k$ such that $n = 2k+1$ and $n > 0$. Namely, $2k+1>0$ and then $k \geq 0$. We have $n^2 = (2k+1)^2 = 4k^2 + 4k + 1 = 4k(k+1)+1$. There are two cases:
+    
+    Case 1: $k$ is an odd integer, then $k = 2a+1$ for some integer $a$. Thus $n^2 = 4(2a+1)(2a+2)+1 = 8(2a+1)(a+1)+1$, and then $n^2 \mod 8 = 1$. That is, $n^2 \equiv 1 \pmod{8}$.
+    
+    Case 2: $k$ is an even integer, then $k = 2a$ for some integer $a$. Thus $n^2 = 4(2a)(2a+1)+1 = 8a(2a+1)+1$, and then $n^2 \mod 8 = 1$. That is, $n^2 \equiv 1 \pmod{8}$.
+    
+\end{enumerate}
+\subsection{Integer Representation and Algorithms}
+\begin{enumerate}
+    \setcounter{enumi}{11}
+    \item $(1863)_{16}$
+    \setcounter{enumi}{21}
+    \item (c) In base 3: $(20001) \times (1111) = 20001+200010+2000100+20001000 = 22221111$
+    \setcounter{enumi}{31}
+    \item Let a positive integer $k$ have unique decimal representation $a_{n}10^n+a_{n-1}10^{n-1}+\dots+a_110^1+a_010^0$, then $k \equiv a_{n}(-1)^n+a_{n-1}(-1)^{n-1}+\dots+a_1(-1)^1+a_0(-1)^0 \pmod{11}$. There are two cases. 
+    
+    Case 1 if n is even, then $k \equiv a_{n} - a_{n-1}+ \dots -a_1+a_0 \equiv (a_{n}+a_{n-2}+\dots +a_0) - (a_{n-1}+a_{n-3}+\dots+a_1) \pmod{11}$, that is $k$ is divisible by 11 if and only if the the difference between the sum of even position digits and the sum of odd position digits is divisible by 11.
+    
+    Case 2 if n is odd, then $k \equiv -a_{n} + a_{n-1}- \dots -a_1+a_0 \equiv -(a_{n}+a_{n-2}+\dots +a_1) + (a_{n}+a_{n-2}+\dots+a_0) \pmod{11}$, that is $k$ is divisible by 11 if and only if the the difference between the sum of even position digits and the sum of odd position digits is divisible by 11.
+    
+\end{enumerate}
+\subsection{Primes and Greatest Common Divisors}
+\begin{enumerate}
+    \setcounter{enumi}{11}
+    \item for some positive integer $n$, since we know that $2|(n+1)!$, $3|(n+1)!$, $4|(n+1)!$,...$n|(n+1)!$, and $2|2$, $3|3$, $4|4$,...$n|n$, we have $2|[(n+1)!+2]$, $3|[(n+1)!+3]$, $4|[(n+1)!+4$,...,$(n+1)|[(n+1)!+(n+1)]$. Since for any integer $1<a<n+2$, $(n+1)!+a > a$, $[(n+1)!+a]$ is divisible by some number other than $1$ and itself. Therefore the list contains $n$ consecutive positive integers that are composites.
+    
+    \setcounter{enumi}{15}
+    \item (b)Since after prime factorization, $14 = 2\cdot7$, $17 = 17$, $85 = 5\cdot 17$, we have $GCD(17,85) = 17$. Therefore the three numbers are not pairwise relatively prime.
+    
+    (c)Since after prime factorization, $25 = 5^2$, $41 = 41$, $49 = 7^2$, $64 = 2^6$, we have $GCD(25,41) = 1$, $GCD(25,49) = 1$, $GCD(25,64) = 1$, $GCD(41,49) = 1$, $GCD(41,64) = 1$, $GCD(49,64) = 1$. Therefore, the four numbers are pairwise relatively prime.
+    
+    \setcounter{enumi}{17}
+    \item (a) The factors of $6$ are $1,2,3,6$, and $6 = 1+2+3$. The factors of $28$ are $1,2,4,7,14,28$, and $28 = 1+2+4+7+14$.
+    
+    (b) For prime number $p$, when $2^p-1$ is a prime, then no numbers other than $1$ and $2^p-1$ divide $2^p-1$. In addition, since the prime factorization of $2^{p-1}$ has only powers of $2$, no numbers other than $i$th power of 2 divides $2^{p-1}$, where $0 \leq i \leq p-1$ is an integer. Therefore, the factors of $2^{p-1}(2^p-1)$ are $1,2,2^2,2^3,\dots,2^{p-2},2^{p-1},(2^p-1),2(2^p-1),2^2(2^p-1),2^3(2^p-1),\dots,2^{p-1}(2^p-1)$. The sum of all factors other than the number itself forms two finite geometric series, summing to $\frac{2^p-1}{2-1}+(2^p-1)\frac{2^{p-1}-1}{2-1} = 2^p-1+2^{2p-1}-2^p-2^{p-1}+1 = 2^{p-1}(2^p-1)$
+    
+    \setcounter{enumi}{23}
+    \item (b) the GCD is $2\cdot3\cdot11=66$\\
+    (e) undefined.
+    
+    \setcounter{enumi}{29}
+    \item $LCM(a,b) = ab/GCD(a,b) = 2^73^85^27^{11}/2^33^45=2^43^4\cdot5\cdot7^{11}$ 
+    
+    \setcounter{enumi}{51}
+    \item If the statement is true, then people can construct more and more larger prime numbers from existing prime numbers without much trouble, thus the statement has to be false. Trial and error gives us one counterexample: for $n = 6$, $p_1p_2p_3p_4p_5p_6+1 = 2\cdot3\cdot5\cdot7\cdot11\cdot13 = 30031 = 59\times 509$.
+    
+    \setcounter{enumi}{53}
+    \item Suppose there only finitely many such unique primes $q_1,q_2,q_3,\dots,q_n$, where $q_i$ is in the form $3k+2$, where $k$ is a non-negative integer. Consider the number $p = 3q_1q_2\dots q_n-1$, where $n$ is large enough. There are two cases:
+    
+    Case 1: $p$ is a prime number, then $p = 3(q_1q_2\dots q_n-1)+2$. Since $(q_1q_2\dots q_n)$ is also a non-negative integer, $p$ is a a prime in the form $3k+2$ but not in the list. Thus our assumption is wrong and there are infinitely many such unique primes.
+    
+    Case 2: $p$ is not a prime number, then by the fundamental theorem of arithmetic, $p$ can be written as $Q_1Q_2\dots Q_m$, where $Q_i$ are not necessarily unique prime numbers and $m \geq 2$. Since for all $1\leq j \leq n$, $q_j \notdivides p$ but for all $1 \leq i \leq m$, $Q_i | p$, we have $Q_i \neq q_j$. We also have $3(q_1q_2\dots q_n)-1 \equiv 2 \equiv (Q_1Q_2\dots Q_m) \pmod{3}$. Now let's suppose none of the $Q_i$ is in the form $3k+2$, where $k$ is a non-negative integer, then $Q_i \equiv 0 \pmod{3}$ or $Q_i \equiv 1{3}$, which causes $Q_1Q_2\dots Q_m \equiv 0\pmod{3}$ or $(Q_1Q_2\dots Q_m) \equiv 1\pmod{3}$ which contradicts. Therefore our assumption is wrong and there is at least one $Q_i$ in the form $3k+2$, where $k$ is a non-negative integer. However, this contradicts our overarching assumption, thus there are infinitely many such unique primes that can be expressed in the form $3k+2$, where $k$ is a non-negative integer.
+\end{enumerate}
+\end{document}
